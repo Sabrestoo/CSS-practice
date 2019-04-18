@@ -1,0 +1,213 @@
+:root {
+  --main-red: #990000;
+  --main-white: #f2f2f2;
+  --main-gold: #e6b800;
+  --main-grey: #808080;
+  --overlay-col: #4f8aff;
+  --home-image: url("images/boxing.jpg");
+  --portrait-image: url("/images/portrait.png");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  color: var(--main-white);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+#bgImg {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background: var(--home-image);
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: -2;
+}
+
+/* overlay using pseudo element */
+#bgImg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
+  opacity: 0.15;
+  background: var(--overlay-col);
+}
+
+/* headings */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 400;
+}
+
+.lgHeading {
+  font-size: 5rem;
+}
+
+.smHeading {
+  color: var(--main-gold);
+}
+
+/* links */
+
+a {
+  color: var(--main-white);
+  text-decoration: none;
+}
+
+/* header */
+
+header {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+.textSecond {
+  color: var(--main-red);
+}
+
+main {
+  padding: 4rem;
+  height: 100%;
+}
+
+.icons {
+  margin-top: 1rem;
+}
+
+a > i {
+  padding: 0.4rem;
+}
+
+a > i:hover {
+  color: var(--main-red);
+  transition: color 0.5s ease-in;
+}
+
+#home {
+  /* Hide scroll bars */
+  overflow: hidden;
+}
+
+#home > h1 {
+  margin-top: 20vh;
+}
+
+/* Menu Button*/
+
+.menuButton {
+  position: absolute;
+  z-index: 3;
+  right: 35px;
+  top: 35px;
+  transition: 0.5s ease-out;
+}
+
+.menuButton .btnLine {
+  width: 28px;
+  height: 3px;
+  margin: 0 0 5px 0;
+  background: var(--main-white);
+}
+
+.menuButton.close {
+  transform: rotate(180deg);
+}
+
+.menuButton.close:hover {
+  transform: rotate(90deg);
+}
+
+.menuButton.close .btnLine:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menuButton.close .btnLine:nth-child(2) {
+  opacity: 0;
+}
+
+.menuButton.close .btnLine:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* nav menu */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+
+.navWrap {
+  background: var(--main-grey);
+  opacity: 0.8;
+  border-radius: 50%;
+  width: 200vw;
+  height: 200vw;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+.menuNav {
+  text-align: center;
+  max-width: 90vw;
+  max-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.menuNav > li {
+  list-style: none;
+  color: var(--main-red);
+  font-size: 2.5rem;
+  padding: 1rem;
+}
+
+.menuNav > li > a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.menuNav > li > a:hover {
+  color: var(--main-gold);
+}
+
+/* show menu */
+.menuButton.close + .menu {
+  visibility: visible;
+}
+
+.menuButton.close + .menu .navWrap {
+  transform: scale(1);
+  transition-duration: 1s;
+}
+
+.menuButton.close + .menu .navWrap > .menuNav {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
